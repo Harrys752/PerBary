@@ -6,8 +6,11 @@
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Profile</button>
                         </div>
-                        <div class="btn-group">
-                            <a href="{{ route('logout')}}" class="btn btn-sm btn-outline-secondary">Logout</button>
+                        <div class="btn-group mr-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('logout') }}">Logout</a></button>
                         </div>
+                        {{-- <div class="btn-group mr-2">
+                            <a href="{{ route('logout')}}" class="btn btn-sm btn-outline-secondary">Logout</button>
+                        </div> --}}
                     </div>
                 </div>
