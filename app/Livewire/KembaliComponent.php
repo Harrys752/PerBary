@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Pinjam;
+use App\Models\Pengembalian;
 use DateTime;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,11 +13,12 @@ class KembaliComponent extends Component
 {
     use WithPagination, WithoutUrlPagination;
     protected $paginationTheme = 'bootstrap';
-    public $judul, $member, $tglkembali, $selisih, $status, $lama;
+    public $id, $judul, $member, $tglkembali, $selisih, $status, $lama;
     public function render()
     {
         $layout['title'] = "Kelola Pengembalian Buku";
         $data['pinjam'] = Pinjam::where('status', 'pinjam')->paginate(10);
+        $data['pengembalian'] = Pengembalian::paginate(10);
         return view('livewire.kembali-component', $data)->layoutData($layout);
     }
     public function pilih($id){
@@ -24,6 +26,7 @@ class KembaliComponent extends Component
         $this->judul=$pinjam->buku->judul;
         $this->member=$pinjam->user->nama;
         $this->tglkembali=$pinjam->tgl_kembali;
+        $this->id=$pinjam->id;
 
         $kembali= new DateTime($this->tglkembali);
         $today= new DateTime();
@@ -34,6 +37,25 @@ class KembaliComponent extends Component
         } else {
             $this->status = false;
         }
-        
+        $this->lama = $selisih->d;
+    }
+    public function store(){
+        if($this->status==true){
+            $denda = $this->lama*1000;
+        } else{
+            $denda=0;
+        }
+        $pinjam=Pinjam::find($this->id);
+        Pengembalian::create([
+            'pinjam_id'=>$this->id,
+            'tgl_kembali'=>date('Y-m-d'),
+            'denda'=>$denda
+        ]);
+        $pinjam->update([
+            'status'=>'kembali'
+        ]);
+        $this->reset();
+        session()->flash('success','Buku berhasil diproses!');
+        return redirect()->route('kembali');
     }
 }

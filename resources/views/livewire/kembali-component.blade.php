@@ -42,6 +42,41 @@
             </div>
         </div>
     </div>
+    <div class="card">
+        <div class="card-header">
+            History Pengembalian Buku
+        </div>
+        <div class="card-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">ID Pinjam</th>
+                        <th scope="col">Tanggal Kembali</th>
+                        <th scope="col">Denda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pengembalian as $data)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{$data->pinjam_id}}</td>
+                        <td>{{$data->tgl_kembali}}</td>
+                        <td>{{$data->denda}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{ $pengembalian->links() }}
+            </div>
+        </div>
+    </div>
     {{-- Modal Tambah Buku --}}
     <div wire:ignore.self class="modal fade" id="pilih" tabindex="-1" aria-labelledby="addPageLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -99,12 +134,20 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-4">
-                            Lama Terlambat
+                            Lama Pinjaman
                         </div>
                         <div class="col-md-8">
                             : {{ $lama }} Hari
                         </div>
                     </div>
+                    {{-- <div class="row mb-3">
+                        <div class="col-md-4">
+                            Jumlah Denda
+                        </div>
+                        <div class="col-md-8">
+                            : {{ $lama * 1000 }} Rupiah
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

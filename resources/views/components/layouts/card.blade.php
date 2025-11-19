@@ -5,7 +5,7 @@
                 <span data-feather="users" class="mr-2"></span> Members
             </div>
             <div class="card-body">
-                <h5 class="card-title">Total: 120</h5>
+                <h5 class="card-title">Total: {{$member}}</h5>
                 <p class="card-text">Active Members</p>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <span data-feather="book" class="mr-2"></span> Books
             </div>
             <div class="card-body">
-                <h5 class="card-title">Total: 450</h5>
+                <h5 class="card-title">Total: {{$buku}}</h5>
                 <p class="card-text">Available Books</p>
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <span data-feather="file-text" class="mr-2"></span> Loans
             </div>
             <div class="card-body">
-                <h5 class="card-title">Active: 85</h5>
+                <h5 class="card-title">Active: {{$pinjam}}</h5>
                 <p class="card-text">Books on Loan</p>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <span data-feather="clock" class="mr-2"></span> Returns
             </div>
             <div class="card-body">
-                <h5 class="card-title">Overdue: 5</h5>
+                <h5 class="card-title">Overdue: {{$kembali}}</h5>
                 <p class="card-text">Overdue Books</p>
             </div>
         </div>
