@@ -9,6 +9,7 @@
                     {{ session('success') }}
                 </div>
             @endif
+            <input type="text" class="form-control" wire:model.live="cari" placeholder="Cari...">
             <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -29,7 +30,7 @@
                         <td>{{$data->jenis}}</td>
                         <td>
                             <a href="#" wire:click="edit({{ $data->id }})" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editPage">Ubah</a>
-                            <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                            <a href="#" wire:click="confirm({{ $data->id }})" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePage">Hapus</a>
                         </td>
                     </tr>
                     @endforeach
@@ -120,6 +121,26 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" wire:click="update" class="btn btn-primary" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Delete User --}}
+    <div wire:ignore.self class="modal fade" id="deletePage" tabindex="-1" aria-labelledby="deletePageLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePageLabel">Delete User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Yakin ingin menghapus data?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" wire:click="destroy" class="btn btn-primary" data-dismiss="modal">Ya</button>
                 </div>
             </div>
         </div>
