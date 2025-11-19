@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($kategori as $data)
+                    @foreach ($kategori as $data)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{$data->nama}}</td>
@@ -29,11 +29,7 @@
                             <a href="#" wire:click="confirm({{ $data->id }})" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deletePage">Hapus</a>
                         </td>
                     </tr>
-                    @empty
-                    <tr>
-                        <td colspan="3" class="text-center text-muted">Tidak ada data kategori</td>
-                    </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
             {{ $kategori->links() }}
@@ -77,7 +73,7 @@
             </div>
         </div>
     </div>
-    {{-- Modal Edit User --}}
+    {{-- Modal Edit Kategori --}}
     <div wire:ignore.self class="modal fade" id="editPage" tabindex="-1" aria-labelledby="editPageLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -113,7 +109,7 @@
             </div>
         </div>
     </div>
-    {{-- Modal Delete User --}}
+    {{-- Modal Delete Kategori --}}
     <div wire:ignore.self class="modal fade" id="deletePage" tabindex="-1" aria-labelledby="deletePageLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

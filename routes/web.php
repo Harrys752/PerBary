@@ -11,6 +11,7 @@ Route::get('/', HomeComponent::class)->middleware('auth')->name('home');
 Route::get('/user',UserComponent::class)->name('user')->middleware('auth');
 Route::get('/member',MemberComponent::class)->name('member')->middleware('auth');
 Route::get('/kategori',App\Livewire\KategoriComponent::class)->name('kategori')->middleware('auth');
+Route::get('/buku',App\Livewire\BukuComponent::class)->name('buku')->middleware('auth');
 
 Route::get('/login',LoginComponent::class)->name('login');
 Route::get('/logout',[LoginComponent::class, 'keluar'])->name('logout');

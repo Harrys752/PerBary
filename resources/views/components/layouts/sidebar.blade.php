@@ -14,7 +14,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#books">
+                            <a class="nav-link text-white" href="{{ route('buku') }}">
                                 <span data-feather="book"></span>
                                 Manage Books
                             </a>
