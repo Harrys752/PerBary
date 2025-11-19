@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#categories">
+                            <a class="nav-link text-white" href="{{ route('kategori') }}">
                                 <span data-feather="tag"></span>
                                 Manage Categories
                             </a>
